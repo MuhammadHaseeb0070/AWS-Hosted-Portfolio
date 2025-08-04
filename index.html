@@ -89,21 +89,21 @@
         }
         
         .typewriter {
-            overflow: hidden;
-            border-right: 3px solid var(--primary);
             white-space: nowrap;
-            animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
-            width: fit-content;
+            min-height: 1.2em;
+            display: block;
         }
         
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+        .cursor {
+            display: inline;
+            color: var(--primary);
+            font-weight: bold;
+            animation: blink-caret 0.75s step-end infinite;
         }
         
         @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary) }
+            from, to { opacity: 1 }
+            50% { opacity: 0 }
         }
         
         .social-icon {
@@ -114,6 +114,111 @@
             transform: translateY(-3px);
             color: var(--primary);
         }
+
+        /* Mobile Menu Styles */
+        .hamburger {
+            width: 24px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .line {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+
+        .line1 { top: 0; }
+        .line2 { top: 50%; transform: translateY(-50%); }
+        .line3 { bottom: 0; }
+
+        /* Hamburger Animation */
+        .hamburger.active .line1 {
+            transform: rotate(45deg);
+            top: 50%;
+            margin-top: -1.5px;
+        }
+
+        .hamburger.active .line2 {
+            opacity: 0;
+        }
+
+        .hamburger.active .line3 {
+            transform: rotate(-45deg);
+            bottom: 50%;
+            margin-bottom: -1.5px;
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 20, 0.98));
+            backdrop-filter: blur(10px);
+            z-index: 40;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem;
+            transform: translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active .mobile-menu-content {
+            transform: translateY(0);
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            min-width: 200px;
+            justify-content: flex-start;
+        }
+
+        .mobile-nav-link:hover {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 255, 157, 0.2);
+        }
+
+        .mobile-nav-link i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -121,6 +226,8 @@
     <nav class="fixed w-full bg-black bg-opacity-80 backdrop-blur-sm z-50 py-4 px-6 shadow-lg">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <a href="#" class="text-2xl font-bold gradient-text">MH</a>
+            
+            <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-8">
                 <a href="#home" class="nav-link text-white hover:text-gray-300">Home</a>
                 <a href="#about" class="nav-link text-white hover:text-gray-300">About</a>
@@ -128,9 +235,36 @@
                 <a href="#projects" class="nav-link text-white hover:text-gray-300">Projects</a>
                 <a href="#contact" class="nav-link text-white hover:text-gray-300">Contact</a>
             </div>
-            <button class="md:hidden text-white focus:outline-none">
-                <i class="fas fa-bars text-xl"></i>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none relative z-50">
+                <div class="hamburger">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
             </button>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="#home" class="mobile-nav-link">
+                    <i class="fas fa-home mr-3"></i>Home
+                </a>
+                <a href="#about" class="mobile-nav-link">
+                    <i class="fas fa-user mr-3"></i>About
+                </a>
+                <a href="#skills" class="mobile-nav-link">
+                    <i class="fas fa-code mr-3"></i>Skills
+                </a>
+                <a href="#projects" class="mobile-nav-link">
+                    <i class="fas fa-folder mr-3"></i>Projects
+                </a>
+                <a href="#contact" class="mobile-nav-link">
+                    <i class="fas fa-envelope mr-3"></i>Contact
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -139,8 +273,8 @@
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="gradient-text">Muhammad Haseeb</span></h1>
-                <div class="typewriter text-lg md:text-3xl mb-6 leading-tight">
-                    <span>Full Stack Developer &<br class="sm:hidden"> AWS Engineer</span>
+                <div class="text-lg md:text-3xl mb-6 leading-tight">
+                    <span id="typewriter" class="typewriter"></span>
                 </div>
                 <p class="text-gray-300 mb-8 text-lg">
                     Motivated and fast-learning Computer Science graduate with strong experience in React JS, React Native, and Android Development. 
@@ -599,27 +733,28 @@
                 </div>
                 <div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
                     <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
-                    <form>
+                    <form action="https://formsubmit.co/muhammadhaseeb0070@gmail.com" method="POST">
                         <div class="mb-4">
                             <label for="name" class="block text-gray-300 mb-2">Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
                         </div>
                         <div class="mb-4">
                             <label for="email" class="block text-gray-300 mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
                         </div>
                         <div class="mb-4">
                             <label for="subject" class="block text-gray-300 mb-2">Subject</label>
-                            <input type="text" id="subject" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
+                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
                         </div>
                         <div class="mb-6">
                             <label for="message" class="block text-gray-300 mb-2">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"></textarea>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"></textarea>
                         </div>
                         <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-lg font-medium hover:opacity-90 transition">
                             Send Message
                         </button>
                     </form>
+                    
                 </div>
             </div>
         </div>
@@ -653,13 +788,135 @@
         });
         
         // Mobile menu toggle
-        const mobileMenuButton = document.querySelector('.md\\:hidden');
-        const mobileMenu = document.querySelector('.hidden.md\\:flex');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
         
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
+        // Toggle mobile menu
+        mobileMenuBtn.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close menu when clicking on nav links
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
             });
+        });
+        
+        // Close menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close menu on window resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Dynamic Typewriter Effect
+        class TypeWriter {
+            constructor(element, titles, typeSpeed = 100, deleteSpeed = 50, pauseTime = 2000) {
+                this.element = element;
+                this.titles = titles;
+                this.typeSpeed = typeSpeed;
+                this.deleteSpeed = deleteSpeed;
+                this.pauseTime = pauseTime;
+                this.currentTitleIndex = 0;
+                this.currentCharIndex = 0;
+                this.isDeleting = false;
+                // Initialize with cursor
+                this.element.innerHTML = '<span class="cursor">|</span>';
+                setTimeout(() => this.start(), 500); // Small delay before starting
+            }
+
+            start() {
+                this.type();
+            }
+
+            type() {
+                const currentTitle = this.titles[this.currentTitleIndex];
+                
+                if (this.isDeleting) {
+                    // Deleting characters with smooth timing
+                    const text = currentTitle.substring(0, this.currentCharIndex - 1);
+                    this.element.innerHTML = text + '<span class="cursor">|</span>';
+                    this.currentCharIndex--;
+                    
+                    if (this.currentCharIndex === 0) {
+                        this.isDeleting = false;
+                        this.currentTitleIndex = (this.currentTitleIndex + 1) % this.titles.length;
+                        setTimeout(() => this.type(), 300); // Slight pause before next title
+                    } else {
+                        // Smooth deleting with slight variation for more natural feel
+                        const deleteDelay = this.deleteSpeed + Math.random() * 20; // Add 0-20ms variation
+                        setTimeout(() => this.type(), deleteDelay);
+                    }
+                } else {
+                    // Typing characters with natural rhythm
+                    const text = currentTitle.substring(0, this.currentCharIndex + 1);
+                    this.element.innerHTML = text + '<span class="cursor">|</span>';
+                    this.currentCharIndex++;
+                    
+                    if (this.currentCharIndex === currentTitle.length) {
+                        // Finished typing current title, start deleting after pause
+                        setTimeout(() => {
+                            this.isDeleting = true;
+                            this.type();
+                        }, this.pauseTime);
+                    } else {
+                        // Natural typing rhythm with slight variation
+                        const typeDelay = this.typeSpeed + Math.random() * 50; // Add 0-50ms variation
+                        setTimeout(() => this.type(), typeDelay);
+                    }
+                }
+            }
+
+            updateTitles(newTitles) {
+                this.titles = newTitles;
+                if (this.currentTitleIndex >= newTitles.length) {
+                    this.currentTitleIndex = 0;
+                }
+            }
         }
+
+        // Initialize typewriter
+        const typewriterElement = document.getElementById('typewriter');
+        
+        // Define titles for different screen sizes
+        const mobileTitles = ['Full Stack Dev', 'AWS Engineer', 'React Developer'];
+        const desktopTitles = ['Full Stack Developer', 'AWS Cloud Engineer', 'React Native Developer'];
+        
+        // Check screen size and set appropriate titles
+        const isMobile = window.innerWidth < 640; // sm breakpoint
+        const initialTitles = isMobile ? mobileTitles : desktopTitles;
+        
+        const typewriter = new TypeWriter(typewriterElement, initialTitles, 100, 50, 2000);
+        
+        // Handle responsive title changes
+        window.addEventListener('resize', () => {
+            const isMobileNow = window.innerWidth < 640;
+            const newTitles = isMobileNow ? mobileTitles : desktopTitles;
+            typewriter.updateTitles(newTitles);
+        });
     </script>
 </html>
