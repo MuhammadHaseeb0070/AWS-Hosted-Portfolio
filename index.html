@@ -92,7 +92,8 @@
             overflow: hidden;
             border-right: 3px solid var(--primary);
             white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+            width: fit-content;
         }
         
         @keyframes typing {
@@ -138,9 +139,8 @@
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="gradient-text">Muhammad Haseeb</span></h1>
-                <div class="typewriter text-xl md:text-3xl mb-6">
-                    <span class="block sm:hidden">Full Stack Dev</span>
-                    <span class="hidden sm:block">Full Stack Developer & AWS Engineer</span>
+                <div class="typewriter text-lg md:text-3xl mb-6 leading-tight">
+                    <span>Full Stack Developer &<br class="sm:hidden"> AWS Engineer</span>
                 </div>
                 <p class="text-gray-300 mb-8 text-lg">
                     Motivated and fast-learning Computer Science graduate with strong experience in React JS, React Native, and Android Development. 
@@ -157,9 +157,9 @@
             </div>
             <div class="relative flex justify-center">
                 <div class="gradient-border w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden">
-                    <img src="./profileimage.png" alt="Muhammad Haseeb" class="w-full h-full object-cover">
+                    <img src="./images/profileimage.png" alt="Muhammad Haseeb" class="w-full h-full object-cover">
                 </div>
-                <div class="absolute -bottom-4 -right-4 bg-gray-900 p-3 rounded-lg shadow-lg border border-gray-800 max-w-[160px]">
+                <div class="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-gray-900 p-3 rounded-lg shadow-lg border border-gray-800 max-w-[160px] md:max-w-[180px]">
                     <p class="text-xs text-gray-300">Currently Working On</p>
                     <p class="font-medium gradient-text text-sm">AWS & DevOps</p>
                 </div>
@@ -433,7 +433,7 @@
                 <!-- Project 1 -->
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
                     <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="LavaCrypt Chat App" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <img src="./images/lavalamp.png" alt="LavaCrypt Chat App" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">LavaCrypt (FYP)</h3>
@@ -445,7 +445,7 @@
                         </div>
                         <div class="flex space-x-3">
                             <a href="https://github.com/MuhammadHaseeb0070/DialogueFrontEnd" class="text-sm gradient-text font-medium">GitHub</a>
-                            <a href="#" class="text-sm gradient-text font-medium">View Demo</a>
+                            <a href="#" class="text-sm gradient-text font-medium">Read More >></a>
                         </div>
                     </div>
                 </div>
@@ -453,7 +453,7 @@
                 <!-- Project 2 -->
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
                     <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1489599874718-3b1bd04e93b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="CineHub Movie App" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <img src="./images/cinehub.jpg" alt="CineHub Movie App" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">CineHub</h3>
@@ -473,7 +473,7 @@
                 <!-- Project 3 -->
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
                     <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80" alt="FlowTrack Finance Tracker" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <img src="./images/flowtrack.jpg" alt="FlowTrack Finance Tracker" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">FlowTrack</h3>
@@ -493,7 +493,7 @@
                 <!-- Project 4 -->
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
                     <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Resume Architect" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <img src="./images/resumearchitect.png" alt="Resume Architect" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Resume Architect</h3>
@@ -513,7 +513,7 @@
                 <!-- Project 5 -->
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
                     <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="UI Architect" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <img src="./images/UIarchitect.png" alt="UI Architect" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">UI Architect</h3>
@@ -585,7 +585,7 @@
                             <a href="https://github.com/MuhammadHaseeb0070" target="_blank" class="social-icon w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-xl">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://linkedin.com/in/muhammad-haseeb-b4544a257" target="_blank" class="social-icon w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-xl">
+                            <a href="https://www.linkedin.com/in/muhammad-haseeb-b4544a257/" target="_blank" class="social-icon w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-xl">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                             <a href="mailto:muhammadhaseeb0070@gmail.com" class="social-icon w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-xl">
