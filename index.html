@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Haseeb | CS Graduate & Developer</title>
+    <meta name="description" content="Muhammad Haseeb – Full Stack Developer and AWS Cloud Engineer. React, React Native, Kotlin, Node.js, Express, PostgreSQL. Portfolio, projects, and contact.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#050505">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="icon" href="./images/profileimage.png" sizes="32x32" type="image/png">
+    <link rel="preload" as="image" href="./images/profileimage.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Muhammad Haseeb | CS Graduate & Developer">
+    <meta property="og:description" content="Full Stack Developer and AWS Cloud Engineer. Explore projects and get in touch.">
+    <meta property="og:image" content="./images/profileimage.png">
+    <meta property="og:site_name" content="Muhammad Haseeb Portfolio">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Muhammad Haseeb | CS Graduate & Developer">
+    <meta name="twitter:description" content="Full Stack Developer and AWS Cloud Engineer. Explore projects and get in touch.">
+    <meta name="twitter:image" content="./images/profileimage.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -68,6 +84,14 @@
         
         .nav-link:hover::after {
             width: 100%;
+        }
+        
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link.active {
+            color: var(--primary);
         }
         
         .project-card {
@@ -801,12 +825,58 @@
         section {
             max-width: 100vw;
             overflow-x: hidden;
+            scroll-margin-top: 80px; /* offset fixed nav */
+        }
+
+        /* Accessible skip link */
+        .skip-link {
+            position: fixed;
+            left: 16px;
+            top: -48px;
+            z-index: 1000;
+            background: #111827;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus {
+            top: 16px;
+            outline: 2px solid var(--primary);
+        }
+
+        /* Back to top button */
+        #back-to-top {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: #0a0a0a;
+            font-weight: 700;
+            border: none;
+            box-shadow: 0 10px 25px rgba(0,255,157,0.15);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        #back-to-top.show {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body class="min-h-screen">
+    <a href="#home" class="skip-link">Skip to content</a>
     <!-- Navigation -->
-    <nav class="fixed w-full bg-black bg-opacity-80 backdrop-blur-sm z-50 py-4 px-6 shadow-lg">
+    <nav class="fixed w-full bg-black bg-opacity-80 backdrop-blur-sm z-50 py-4 px-6 shadow-lg" role="navigation" aria-label="Primary">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <a href="#" class="text-2xl font-bold gradient-text">MH</a>
             
@@ -820,7 +890,7 @@
             </div>
             
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none relative z-50">
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none relative z-50" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
                 <div class="hamburger">
                     <span class="line line1"></span>
                     <span class="line line2"></span>
@@ -830,7 +900,7 @@
         </div>
         
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="mobile-menu">
+        <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
             <div class="mobile-menu-content">
                 <a href="#home" class="mobile-nav-link">
                     <i class="fas fa-home mr-3"></i>Home
@@ -876,7 +946,7 @@
             <!-- Mobile: Image First, Desktop: Image Second -->
             <div class="relative flex justify-center order-1 md:order-2">
                 <div class="gradient-border w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden">
-                    <img src="./images/profileimage.png" alt="Muhammad Haseeb" class="w-full h-full object-cover">
+                    <img src="./images/profileimage.png" alt="Muhammad Haseeb" class="w-full h-full object-cover" fetchpriority="high" decoding="async">
                 </div>
                 <div class="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-gray-900 p-3 rounded-lg shadow-lg border border-gray-800 max-w-[160px] md:max-w-[180px]">
                     <p class="text-xs text-gray-300">Currently Working On</p>
@@ -1161,7 +1231,7 @@
                 <!-- Project 1 -->
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="lavacrypt" onclick="openProjectModal('lavacrypt')">
                     <div class="h-48 overflow-hidden">
-                        <img src="./images/fyp1.png" alt="LavaCrypt Chat App" class="project-card-image">
+                        <img src="./images/fyp1.png" alt="LavaCrypt Chat App" class="project-card-image" loading="lazy" decoding="async">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">LavaCrypt (FYP)</h3>
@@ -1181,7 +1251,7 @@
                 <!-- Project 2 -->
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="cinehub" onclick="openProjectModal('cinehub')">
                     <div class="h-48 overflow-hidden">
-                        <img src="./images/cinehub1.jpg" alt="CineHub Movie App" class="project-card-image">
+                        <img src="./images/cinehub1.jpg" alt="CineHub Movie App" class="project-card-image" loading="lazy" decoding="async">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">CineHub</h3>
@@ -1201,7 +1271,7 @@
                 <!-- Project 3 -->
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="flowtrack" onclick="openProjectModal('flowtrack')">
                     <div class="h-48 overflow-hidden">
-                        <img src="./images/flowtrack1.png" alt="FlowTrack Finance Tracker" class="project-card-image">
+                        <img src="./images/flowtrack1.png" alt="FlowTrack Finance Tracker" class="project-card-image" loading="lazy" decoding="async">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">FlowTrack</h3>
@@ -1221,7 +1291,7 @@
                 <!-- Project 4 -->
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="resume-architect" onclick="openProjectModal('resume-architect')">
                     <div class="h-48 overflow-hidden">
-                        <img src="./images/resumearchitect.png" alt="Resume Architect" class="project-card-image">
+                        <img src="./images/resumearchitect.png" alt="Resume Architect" class="project-card-image" loading="lazy" decoding="async">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Resume Architect</h3>
@@ -1241,7 +1311,7 @@
                 <!-- Project 5 -->
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="ui-architect" onclick="openProjectModal('ui-architect')">
                     <div class="h-48 overflow-hidden">
-                        <img src="./images/UIarchitect.png" alt="UI Architect" class="project-card-image">
+                        <img src="./images/UIarchitect.png" alt="UI Architect" class="project-card-image" loading="lazy" decoding="async">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">UI Architect</h3>
@@ -1370,7 +1440,7 @@
     </footer>
 
     <!-- Project Detail Modal -->
-    <div id="project-modal" class="project-modal">
+    <div id="project-modal" class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-project-title" aria-hidden="true">
         <div class="project-modal-content">
             <div class="modal-header">
                 <h2 id="modal-project-title" class="text-xl font-bold text-white">Project Details</h2>
@@ -1381,7 +1451,7 @@
             <div class="modal-body">
                 <!-- Image Section -->
                 <div class="project-image-section">
-                    <img id="modal-main-image" class="project-main-image" src="" alt="Project Screenshot">
+                    <img id="modal-main-image" class="project-main-image" src="" alt="Project Screenshot" decoding="async">
                     <div id="modal-thumbnails" class="project-thumbnails">
                         <!-- Thumbnails will be dynamically added here -->
                     </div>
@@ -1462,9 +1532,9 @@
     </div>
 
     <!-- Full-Screen Image Viewer -->
-    <div id="fullscreen-viewer" class="fullscreen-viewer">
+    <div id="fullscreen-viewer" class="fullscreen-viewer" aria-hidden="true">
         <div class="fullscreen-image-container">
-            <img id="fullscreen-image" class="fullscreen-image" src="" alt="">
+            <img id="fullscreen-image" class="fullscreen-image" src="" alt="" loading="lazy" decoding="async">
             <div class="fullscreen-controls">
                 <button class="fullscreen-btn" id="zoom-btn" title="Zoom In/Out">
                     <i class="fas fa-search-plus"></i>
@@ -1478,6 +1548,8 @@
             <span id="fullscreen-info-text">Click image to zoom • Click outside to close</span>
         </div>
     </div>
+    
+    <button id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
 
     <script>
         // Smooth scrolling for navigation links
@@ -1496,11 +1568,15 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const hamburger = document.querySelector('.hamburger');
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        const navLinks = document.querySelectorAll('.nav-link');
         
         // Toggle mobile menu
         mobileMenuBtn.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
+            const isOpen = mobileMenu.classList.contains('active');
+            mobileMenuBtn.setAttribute('aria-expanded', isOpen.toString());
+            mobileMenu.setAttribute('aria-hidden', (!isOpen).toString());
             
             // Prevent body scroll when menu is open
             if (mobileMenu.classList.contains('active')) {
@@ -1534,6 +1610,8 @@
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('active');
                 document.body.style.overflow = 'auto';
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
             }
         });
 
@@ -1724,6 +1802,37 @@
         const modalClose = document.getElementById('modal-close');
         const modalMainImage = document.getElementById('modal-main-image');
         const modalThumbnails = document.getElementById('modal-thumbnails');
+        modalMainImage.decoding = 'async';
+
+        // Focus trap for modal
+        let lastFocusedElementBeforeModal = null;
+        function getFocusableElements(container) {
+            return container.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+        }
+        function enableFocusTrap(container) {
+            lastFocusedElementBeforeModal = document.activeElement;
+            const focusable = getFocusableElements(container);
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (first) first.focus();
+            container.addEventListener('keydown', trapHandler);
+            function trapHandler(e) {
+                if (e.key !== 'Tab') return;
+                if (focusable.length === 0) return;
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+            container._trapHandler = trapHandler;
+        }
+        function disableFocusTrap(container) {
+            if (container._trapHandler) container.removeEventListener('keydown', container._trapHandler);
+            if (lastFocusedElementBeforeModal) lastFocusedElementBeforeModal.focus();
+        }
 
         // Open project modal
         function openProjectModal(projectId) {
@@ -1744,9 +1853,13 @@
             modalMainImage.alt = project.name + ' Screenshot';
 
             // Add click handler for main image
-            modalMainImage.addEventListener('click', () => {
+            if (modalMainImage.clickHandler) {
+                modalMainImage.removeEventListener('click', modalMainImage.clickHandler);
+            }
+            modalMainImage.clickHandler = () => {
                 openFullscreenViewer(modalMainImage.src, modalMainImage.alt);
-            });
+            };
+            modalMainImage.addEventListener('click', modalMainImage.clickHandler);
 
             // Create thumbnails
             modalThumbnails.innerHTML = '';
@@ -1755,6 +1868,8 @@
                 thumbnail.src = image;
                 thumbnail.alt = `${project.name} Screenshot ${index + 1}`;
                 thumbnail.className = `project-thumbnail ${index === 0 ? 'active' : ''}`;
+                thumbnail.loading = 'lazy';
+                thumbnail.decoding = 'async';
                 thumbnail.addEventListener('click', () => {
                     modalMainImage.src = image;
                     document.querySelectorAll('.project-thumbnail').forEach(t => t.classList.remove('active'));
@@ -1791,6 +1906,7 @@
                 const linkElement = document.createElement('a');
                 linkElement.href = link.url;
                 linkElement.target = '_blank';
+                linkElement.rel = 'noopener noreferrer';
                 linkElement.className = 'project-link';
                 linkElement.innerHTML = `<i class="${link.icon}"></i> ${link.type.charAt(0).toUpperCase() + link.type.slice(1)}`;
                 linksContainer.appendChild(linkElement);
@@ -1799,12 +1915,20 @@
             // Show modal
             projectModal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            projectModal.setAttribute('aria-hidden', 'false');
+            enableFocusTrap(projectModal);
         }
 
         // Close project modal
         function closeProjectModal() {
             projectModal.classList.remove('active');
             document.body.style.overflow = 'auto';
+            projectModal.setAttribute('aria-hidden', 'true');
+            disableFocusTrap(projectModal);
+            if (modalMainImage && modalMainImage.clickHandler) {
+                modalMainImage.removeEventListener('click', modalMainImage.clickHandler);
+                modalMainImage.clickHandler = null;
+            }
         }
 
         // Event listeners for modal
@@ -1840,6 +1964,7 @@
             fullscreenImage.classList.remove('zoomed');
             zoomBtn.innerHTML = '<i class="fas fa-search-plus"></i>';
             zoomBtn.title = 'Zoom In';
+            fullscreenViewer.setAttribute('aria-hidden', 'false');
         }
 
         // Close fullscreen viewer
@@ -1848,6 +1973,7 @@
             document.body.style.overflow = 'auto';
             isZoomed = false;
             fullscreenImage.classList.remove('zoomed');
+            fullscreenViewer.setAttribute('aria-hidden', 'true');
         }
 
         // Toggle zoom
@@ -2013,6 +2139,56 @@
         } else {
             initScrollAnimations();
         }
+
+        // Active nav highlighting on scroll
+        function initActiveNav() {
+            const sectionElements = Array.from(navLinks)
+                .map(link => document.querySelector(link.getAttribute('href')))
+                .filter(Boolean);
+            const linkById = new Map(Array.from(navLinks).map(l => [l.getAttribute('href').slice(1), l]));
+            let activeId = null;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        activeId = entry.target.id;
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        navLinks.forEach(l => l.removeAttribute('aria-current'));
+                        const activeLink = linkById.get(activeId);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                            activeLink.setAttribute('aria-current', 'true');
+                        }
+                    }
+                });
+            }, { threshold: 0.6 });
+            sectionElements.forEach(sec => observer.observe(sec));
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initActiveNav);
+        } else {
+            initActiveNav();
+        }
+
+        // Secure external links
+        (function secureExternalLinks() {
+            document.querySelectorAll('a[target="_blank"]').forEach(a => {
+                a.rel = 'noopener noreferrer';
+            });
+        })();
+
+        // Back to top button behavior
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY || document.documentElement.scrollTop;
+            if (y > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
         // Animate hero section immediately on page load
         window.addEventListener('load', () => {
