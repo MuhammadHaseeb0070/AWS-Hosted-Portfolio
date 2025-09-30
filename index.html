@@ -103,6 +103,96 @@
             box-shadow: 0 10px 25px rgba(0, 255, 157, 0.1);
         }
         
+        /* Premium card enhancements */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .project-card::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            z-index: -1;
+            border-radius: 12px;
+            background: linear-gradient(120deg, rgba(0,255,157,0.15), rgba(0,184,255,0.15));
+            filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .project-card:hover .project-overlay { opacity: 1; }
+
+        .project-overlay .overlay-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .project-overlay .overlay-title {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .card-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.45rem 0.7rem;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(6px);
+        }
+        .card-action:hover {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: #0a0a0a;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(0,255,157,0.2);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 9999px;
+            background: rgba(0,0,0,0.55);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+            font-size: 0.75rem;
+            backdrop-filter: blur(6px);
+        }
+
         .project-card-image {
             width: 100%;
             height: 100%;
@@ -1227,9 +1317,15 @@
     <section id="projects" class="py-20 px-6 bg-gray-900 scroll-animate fade-scale">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center gradient-text">My Projects</h2>
+            <!-- Filters -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
+                <button class="filter-btn px-4 py-2 rounded-full text-sm border border-gray-700 bg-gray-800 text-white hover:border-gray-500 transition" data-filter="all">All</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm border border-gray-700 bg-gray-800 text-white hover:border-gray-500 transition" data-filter="mobile">Mobile</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm border border-gray-700 bg-gray-800 text-white hover:border-gray-500 transition" data-filter="web">Web</button>
+            </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
                 <!-- Project 1 -->
-                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="lavacrypt" onclick="openProjectModal('lavacrypt')">
+                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="lavacrypt" data-category="mobile" onclick="openProjectModal('lavacrypt')" role="button" tabindex="0" aria-label="Open LavaCrypt details">
                     <div class="h-48 overflow-hidden">
                         <img src="./images/fyp1.png" alt="LavaCrypt Chat App" class="project-card-image" loading="lazy" decoding="async">
                     </div>
@@ -1249,7 +1345,7 @@
                 </div>
                 
                 <!-- Project 2 -->
-                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="cinehub" onclick="openProjectModal('cinehub')">
+                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="cinehub" data-category="mobile" onclick="openProjectModal('cinehub')" role="button" tabindex="0" aria-label="Open CineHub details">
                     <div class="h-48 overflow-hidden">
                         <img src="./images/cinehub1.jpg" alt="CineHub Movie App" class="project-card-image" loading="lazy" decoding="async">
                     </div>
@@ -1269,7 +1365,7 @@
                 </div>
                 
                 <!-- Project 3 -->
-                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="flowtrack" onclick="openProjectModal('flowtrack')">
+                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="flowtrack" data-category="mobile" onclick="openProjectModal('flowtrack')" role="button" tabindex="0" aria-label="Open FlowTrack details">
                     <div class="h-48 overflow-hidden">
                         <img src="./images/flowtrack1.png" alt="FlowTrack Finance Tracker" class="project-card-image" loading="lazy" decoding="async">
                     </div>
@@ -1289,7 +1385,7 @@
                 </div>
                 
                 <!-- Project 4 -->
-                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="resume-architect" onclick="openProjectModal('resume-architect')">
+                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="resume-architect" data-category="web" onclick="openProjectModal('resume-architect')" role="button" tabindex="0" aria-label="Open Resume Architect details">
                     <div class="h-48 overflow-hidden">
                         <img src="./images/resumearchitect.png" alt="Resume Architect" class="project-card-image" loading="lazy" decoding="async">
                     </div>
@@ -1309,7 +1405,7 @@
                 </div>
                 
                 <!-- Project 5 -->
-                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="ui-architect" onclick="openProjectModal('ui-architect')">
+                <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 cursor-pointer" data-project="ui-architect" data-category="web" onclick="openProjectModal('ui-architect')" role="button" tabindex="0" aria-label="Open UI Architect details">
                     <div class="h-48 overflow-hidden">
                         <img src="./images/UIarchitect.png" alt="UI Architect" class="project-card-image" loading="lazy" decoding="async">
                     </div>
@@ -1710,6 +1806,7 @@
                 date: 'Jan 2024 - May 2024',
                 duration: '5 months',
                 status: 'Completed',
+                category: 'mobile',
                 techStack: ['React Native', 'Node.js', 'Express.js', 'MongoDB', 'Socket.io', 'Cryptography', 'OTP Authentication'],
                 images: [
                     './images/fyp1.png',
@@ -1732,6 +1829,7 @@
                 date: 'Sep 2023 - Nov 2023',
                 duration: '3 months',
                 status: 'Completed',
+                category: 'mobile',
                 techStack: ['Kotlin', 'Android Studio', 'TMDB API', 'Retrofit', 'Room Database', 'Material Design', 'RecyclerView'],
                 images: [
                     './images/cinehub1.jpg',
@@ -1749,6 +1847,7 @@
                 date: 'Jun 2023 - Aug 2023',
                 duration: '3 months',
                 status: 'Completed',
+                category: 'mobile',
                 techStack: ['React Native', 'React Navigation', 'Victory Charts', 'AsyncStorage', 'HCI Design', 'Expo', 'JavaScript'],
                 images: [
                     './images/flowtrack1.png',
@@ -1770,6 +1869,7 @@
                 date: 'Mar 2023 - May 2023',
                 duration: '2 months',
                 status: 'Live',
+                category: 'web',
                 techStack: ['React JS', 'HTML2Canvas', 'Local Storage', 'CSS3', 'Responsive Design', 'JavaScript ES6'],
                 images: [
                     './images/resumearchitect.png'
@@ -1786,6 +1886,7 @@
                 date: 'Jan 2023 - Feb 2023',
                 duration: '2 months',
                 status: 'Live',
+                category: 'web',
                 techStack: ['React JS', 'CSS3', 'Component Library', 'Responsive Design', 'Modern UI/UX', 'JavaScript'],
                 images: [
                     './images/UIarchitect.png',
@@ -1796,6 +1897,108 @@
                 ]
             }
         };
+
+        // Enhance project cards with overlays and badges
+        function enhanceProjectCards() {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                const id = card.getAttribute('data-project');
+                const project = projectsData[id];
+                if (!project) return;
+
+                // Badge for status or special tags
+                if (!card.querySelector('.card-badge')) {
+                    const badge = document.createElement('div');
+                    badge.className = 'card-badge';
+                    const badgeIcon = project.status === 'Live' ? 'fa-bolt' : 'fa-star';
+                    badge.innerHTML = `<i class="fas ${badgeIcon} text-yellow-300"></i><span>${project.status || 'Featured'}</span>`;
+                    card.appendChild(badge);
+                }
+
+                // Bottom overlay with actions
+                if (!card.querySelector('.project-overlay')) {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'project-overlay';
+                    const left = document.createElement('div');
+                    left.className = 'overlay-left';
+                    const title = document.createElement('div');
+                    title.className = 'overlay-title';
+                    title.textContent = project.name;
+                    left.appendChild(title);
+                    overlay.appendChild(left);
+
+                    const actions = document.createElement('div');
+                    actions.className = 'card-actions';
+
+                    // Details action opens modal
+                    const details = document.createElement('a');
+                    details.href = '#';
+                    details.className = 'card-action';
+                    details.innerHTML = '<i class="fas fa-eye"></i><span>Details</span>';
+                    details.addEventListener('click', (e) => { e.preventDefault(); openProjectModal(id); });
+                    actions.appendChild(details);
+
+                    // Add up to 2 external links if available
+                    if (Array.isArray(project.links)) {
+                        const preferredOrder = ['live', 'demo', 'download', 'github'];
+                        const sorted = [...project.links].sort((a, b) => preferredOrder.indexOf(a.type) - preferredOrder.indexOf(b.type));
+                        sorted.slice(0, 2).forEach(link => {
+                            const a = document.createElement('a');
+                            a.href = link.url;
+                            a.target = '_blank';
+                            a.rel = 'noopener noreferrer';
+                            a.className = 'card-action';
+                            a.innerHTML = `<i class="${link.icon}"></i><span>${link.type.charAt(0).toUpperCase() + link.type.slice(1)}</span>`;
+                            actions.appendChild(a);
+                        });
+                    }
+
+                    overlay.appendChild(actions);
+                    card.appendChild(overlay);
+                }
+
+                // Keyboard support
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openProjectModal(id);
+                    }
+                });
+            });
+        }
+
+        // Project filters
+        function initProjectFilters() {
+            const buttons = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.project-card');
+            function setActive(btn) {
+                buttons.forEach(b => b.classList.remove('ring-2', 'ring-green-400'));
+                btn.classList.add('ring-2', 'ring-green-400');
+            }
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const f = btn.getAttribute('data-filter');
+                    cards.forEach(card => {
+                        const cat = card.getAttribute('data-category') || 'all';
+                        const show = f === 'all' || f === cat;
+                        card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+                        if (show) {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                            card.style.display = '';
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(8px)';
+                            setTimeout(() => { card.style.display = 'none'; }, 180);
+                        }
+                    });
+                    setActive(btn);
+                });
+            });
+            // Set initial active
+            const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+            if (allBtn) setActive(allBtn);
+        }
 
         // Project Modal Functionality
         const projectModal = document.getElementById('project-modal');
@@ -2135,9 +2338,15 @@
 
         // Initialize scroll animations when DOM is loaded
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initScrollAnimations);
+            document.addEventListener('DOMContentLoaded', () => {
+                initScrollAnimations();
+                enhanceProjectCards();
+                initProjectFilters();
+            });
         } else {
             initScrollAnimations();
+            enhanceProjectCards();
+            initProjectFilters();
         }
 
         // Active nav highlighting on scroll
