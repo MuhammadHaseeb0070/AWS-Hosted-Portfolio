@@ -871,9 +871,303 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* === Desktop/Mobile Visibility === */
+        .desktop-only { display: none; }
+        .mobile-only { display: block; }
+        @media (min-width: 768px) {
+            .desktop-only { display: block; }
+            .mobile-only { display: none; }
+        }
+
+        /* === OS Desktop Style === */
+        #desktop-os {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: radial-gradient(1200px 800px at 20% 20%, rgba(0,255,157,0.05), transparent 60%),
+                        radial-gradient(1000px 700px at 80% 80%, rgba(0,184,255,0.05), transparent 55%),
+                        #050505;
+            isolation: isolate;
+        }
+        #bg-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .cursor-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(0,255,157,0.12), rgba(0,184,255,0.06) 35%, transparent 60%);
+            filter: blur(24px);
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            mix-blend-mode: screen;
+        }
+        .os-topbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            z-index: 5;
+            backdrop-filter: blur(10px);
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .os-topbar .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+        .os-topbar .brand .badge {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            box-shadow: 0 0 12px rgba(0,255,157,0.6);
+        }
+        .window {
+            position: absolute;
+            min-width: 340px;
+            max-width: 1000px;
+            background: linear-gradient(135deg, rgba(22,22,22,0.95), rgba(32,32,32,0.95));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.02) inset;
+            overflow: hidden;
+            z-index: 2;
+            translate: 0 0;
+            will-change: transform;
+        }
+        .window.hidden { display: none; }
+        .window.maximized {
+            inset: 56px 16px 86px 16px;
+            width: auto !important;
+            height: auto !important;
+        }
+        .titlebar {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 12px;
+            user-select: none;
+            cursor: grab;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .titlebar:active { cursor: grabbing; }
+        .traffic {
+            display: flex; align-items: center; gap: 8px; padding-right: 8px;
+        }
+        .btn-dot {
+            width: 12px; height: 12px; border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.2);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset;
+        }
+        .btn-close { background: #ff5f56; }
+        .btn-min { background: #ffbd2e; }
+        .btn-max { background: #27c93f; }
+        .win-title { flex: 1; text-align: center; color: #e5e7eb; font-weight: 600; font-size: 0.9rem; }
+        .win-body { padding: 16px; overflow: auto; max-height: 70vh; }
+        .win-body .section-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
+        .dock {
+            position: absolute;
+            left: 50%;
+            bottom: 14px;
+            transform: translateX(-50%);
+            display: flex; gap: 14px; align-items: flex-end;
+            padding: 10px 14px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            z-index: 5;
+        }
+        .dock-btn {
+            width: 52px; height: 52px;
+            display: grid; place-items: center;
+            background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(35,35,35,0.9));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: #e5e7eb;
+            transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+        }
+        .dock-btn.active { outline: 2px solid rgba(0,255,157,0.35); }
+        .dock-btn:hover { background: linear-gradient(135deg, rgba(28,28,28,0.95), rgba(42,42,42,0.95)); }
+        .dock-label { position: absolute; bottom: 80px; color: #fff; font-size: 0.75rem; background: rgba(0,0,0,0.7); padding: 6px 8px; border-radius: 8px; opacity: 0; transform: translateY(6px); transition: all 0.15s; pointer-events: none; }
+        .dock-item { position: relative; }
+        .dock-item:hover .dock-label { opacity: 1; transform: translateY(0); }
+        .terminal {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            background: radial-gradient(120% 140% at 10% 10%, rgba(0,255,157,0.06), transparent 40%), #0a0a0a;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 14px;
+            color: #e5e7eb;
+        }
+        .prompt { color: var(--primary); }
+        .caret { display:inline-block; width:8px; height:1.1em; background: var(--primary); animation: caretBlink 1s steps(1) infinite; vertical-align: -2px; }
+        @keyframes caretBlink { 50% { opacity: 0; } }
     </style>
 </head>
 <body class="min-h-screen">
+    <!-- Desktop OS Experience -->
+    <div id="desktop-os" class="desktop-only">
+        <canvas id="bg-canvas" aria-hidden="true"></canvas>
+        <div class="cursor-glow" id="cursor-glow"></div>
+        <div class="os-topbar">
+            <div class="brand">
+                <span class="badge"></span>
+                <span class="gradient-text">Muhammad Haseeb</span>
+            </div>
+            <div class="text-sm text-gray-300" id="os-clock">--:--</div>
+        </div>
+
+        <!-- Windows -->
+        <div id="win-terminal" class="window" style="left: 7%; top: 12%; width: 520px;">
+            <div class="titlebar" data-drag-handle>
+                <div class="traffic">
+                    <div class="btn-dot btn-close" data-action="close"></div>
+                    <div class="btn-dot btn-min" data-action="min"></div>
+                    <div class="btn-dot btn-max" data-action="max"></div>
+                </div>
+                <div class="win-title">Terminal • hello.sh</div>
+            </div>
+            <div class="win-body">
+                <div class="terminal" id="terminal-content">
+                    <div>$ <span class="prompt">whoami</span></div>
+                    <div>mhaseeb</div>
+                    <div class="mt-3">$ <span class="prompt">cat intro.txt</span></div>
+                    <div id="terminal-typed"></div>
+                    <div class="mt-3">$ <span class="prompt">skills --top</span></div>
+                    <div>React • React Native • Kotlin • Node • AWS • DevOps</div>
+                    <div class="mt-3">$ <span class="prompt">open projects</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="win-about" class="window" style="left: 52%; top: 10%; width: 520px;">
+            <div class="titlebar" data-drag-handle>
+                <div class="traffic">
+                    <div class="btn-dot btn-close" data-action="close"></div>
+                    <div class="btn-dot btn-min" data-action="min"></div>
+                    <div class="btn-dot btn-max" data-action="max"></div>
+                </div>
+                <div class="win-title">About Me</div>
+            </div>
+            <div class="win-body">
+                <h3 class="section-title gradient-text">Who am I?</h3>
+                <p class="text-gray-300 mb-4">Motivated CS graduate with strong experience in React JS, React Native, Android/Kotlin, and full‑stack with Node/Express/PostgreSQL. Passionate about HCI and building delightful, performant products.</p>
+                <div class="grid grid-cols-3 gap-3 text-sm">
+                    <div class="bg-gray-800/60 rounded-lg p-3 border border-gray-700/60">
+                        <div class="text-gray-400">Education</div>
+                        <div class="font-semibold">BS CS</div>
+                        <div class="text-gray-500 text-xs">Sukkur IBA (21–25)</div>
+                    </div>
+                    <div class="bg-gray-800/60 rounded-lg p-3 border border-gray-700/60">
+                        <div class="text-gray-400">Experience</div>
+                        <div class="font-semibold">Networking Intern</div>
+                        <div class="text-gray-500 text-xs">SEPCO, 2024</div>
+                    </div>
+                    <div class="bg-gray-800/60 rounded-lg p-3 border border-gray-700/60">
+                        <div class="text-gray-400">Location</div>
+                        <div class="font-semibold">Sukkur, PK</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="win-skills" class="window" style="left: 12%; top: 55%; width: 520px;">
+            <div class="titlebar" data-drag-handle>
+                <div class="traffic">
+                    <div class="btn-dot btn-close" data-action="close"></div>
+                    <div class="btn-dot btn-min" data-action="min"></div>
+                    <div class="btn-dot btn-max" data-action="max"></div>
+                </div>
+                <div class="win-title">Skills</div>
+            </div>
+            <div class="win-body">
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-sm mb-1"><span>Frontend</span><span>90%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1"><span>Backend</span><span>85%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1"><span>UI/UX</span><span>70%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1"><span>Cloud & DevOps</span><span>85%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1"><span>Android/Kotlin</span><span>75%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="win-projects" class="window" style="left: 48%; top: 48%; width: 620px;">
+            <div class="titlebar" data-drag-handle>
+                <div class="traffic">
+                    <div class="btn-dot btn-close" data-action="close"></div>
+                    <div class="btn-dot btn-min" data-action="min"></div>
+                    <div class="btn-dot btn-max" data-action="max"></div>
+                </div>
+                <div class="win-title">Projects</div>
+            </div>
+            <div class="win-body">
+                <div id="projects-grid-desktop" class="grid grid-cols-2 gap-4"></div>
+            </div>
+        </div>
+
+        <div id="win-contact" class="window" style="left: 70%; top: 20%; width: 420px;">
+            <div class="titlebar" data-drag-handle>
+                <div class="traffic">
+                    <div class="btn-dot btn-close" data-action="close"></div>
+                    <div class="btn-dot btn-min" data-action="min"></div>
+                    <div class="btn-dot btn-max" data-action="max"></div>
+                </div>
+                <div class="win-title">Contact</div>
+            </div>
+            <div class="win-body">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3"><i class="fas fa-envelope text-green-400"></i><a class="hover:underline" href="mailto:muhammadhaseeb0070@gmail.com">muhammadhaseeb0070@gmail.com</a></div>
+                    <div class="flex items-center gap-3"><i class="fas fa-phone text-blue-400"></i><a class="hover:underline" href="tel:+923133478691">+92 313 3478691</a></div>
+                    <div class="flex items-center gap-3"><i class="fab fa-github text-white"></i><a class="hover:underline" target="_blank" rel="noopener" href="https://github.com/MuhammadHaseeb0070">GitHub</a></div>
+                    <div class="flex items-center gap-3"><i class="fab fa-linkedin text-sky-400"></i><a class="hover:underline" target="_blank" rel="noopener" href="https://www.linkedin.com/in/muhammad-haseeb-b4544a257/">LinkedIn</a></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dock -->
+        <div class="dock" id="dock">
+            <div class="dock-item"><button class="dock-btn" data-target="#win-terminal" aria-label="Terminal"><i class="fas fa-terminal"></i></button><div class="dock-label">Terminal</div></div>
+            <div class="dock-item"><button class="dock-btn" data-target="#win-about" aria-label="About"><i class="fas fa-user"></i></button><div class="dock-label">About</div></div>
+            <div class="dock-item"><button class="dock-btn" data-target="#win-skills" aria-label="Skills"><i class="fas fa-code"></i></button><div class="dock-label">Skills</div></div>
+            <div class="dock-item"><button class="dock-btn" data-target="#win-projects" aria-label="Projects"><i class="fas fa-folder-open"></i></button><div class="dock-label">Projects</div></div>
+            <div class="dock-item"><button class="dock-btn" data-target="#win-contact" aria-label="Contact"><i class="fas fa-paper-plane"></i></button><div class="dock-label">Contact</div></div>
+        </div>
+    </div>
+
+    <!-- Mobile site wrapper -->
+    <div class="mobile-only">
     <a href="#home" class="skip-link">Skip to content</a>
     <!-- Navigation -->
     <nav class="fixed w-full bg-black bg-opacity-80 backdrop-blur-sm z-50 py-4 px-6 shadow-lg" role="navigation" aria-label="Primary">
@@ -2205,5 +2499,189 @@
         if (prefersReducedMotion.matches) {
             document.documentElement.style.setProperty('--animation-duration', '0.3s');
         }
+
+        // =====================
+        // OS Desktop JavaScript
+        // =====================
+        (function initOSDesktop(){
+            const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+            const osRoot = document.getElementById('desktop-os');
+            if (!isDesktop || !osRoot) return;
+
+            // Live clock
+            const osClock = document.getElementById('os-clock');
+            function updateClock(){
+                const d = new Date();
+                const opts = { hour: '2-digit', minute: '2-digit' };
+                osClock.textContent = d.toLocaleTimeString([], opts);
+            }
+            updateClock();
+            setInterval(updateClock, 1000 * 30);
+
+            // Cursor glow
+            const glow = document.getElementById('cursor-glow');
+            window.addEventListener('pointermove', (e)=>{
+                if (!glow) return;
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+            });
+
+            // Background particles (lightweight)
+            const canvas = document.getElementById('bg-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height, particles;
+            function resize(){ width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; createParticles(); }
+            function createParticles(){
+                const count = Math.min(120, Math.floor((width * height) / 18000));
+                particles = Array.from({length: count}, ()=>({
+                    x: Math.random()*width,
+                    y: Math.random()*height,
+                    vx: (Math.random()*2-1)*0.4,
+                    vy: (Math.random()*2-1)*0.4,
+                    r: Math.random()*1.6 + 0.4
+                }));
+            }
+            let mx = -9999, my = -9999;
+            canvas.addEventListener('pointermove', (e)=>{ const rect = canvas.getBoundingClientRect(); mx = e.clientX-rect.left; my = e.clientY-rect.top; });
+            window.addEventListener('resize', resize);
+            resize();
+            function loop(){
+                ctx.clearRect(0,0,width,height);
+                ctx.fillStyle = 'rgba(0,255,157,0.85)';
+                for (const p of particles){
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0 || p.x > width) p.vx *= -1;
+                    if (p.y < 0 || p.y > height) p.vy *= -1;
+                    // gentle attraction to mouse
+                    const dx = p.x - mx, dy = p.y - my; const d2 = dx*dx+dy*dy;
+                    if (d2 < 120*120){ p.vx += -dx*0.00004; p.vy += -dy*0.00004; }
+                    ctx.globalAlpha = 0.6; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+                }
+                // connections
+                ctx.strokeStyle = 'rgba(0,184,255,0.18)'; ctx.lineWidth = 1;
+                for (let i=0; i<particles.length; i++){
+                    for (let j=i+1; j<particles.length; j++){
+                        const a = particles[i], b = particles[j];
+                        const dx = a.x-b.x, dy = a.y-b.y; const d2 = dx*dx+dy*dy;
+                        if (d2 < 130*130){
+                            ctx.globalAlpha = 0.18 * (1 - (Math.sqrt(d2)/130));
+                            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(loop);
+            }
+            loop();
+
+            // Draggable windows
+            const windows = Array.from(osRoot.querySelectorAll('.window'));
+            let z = 10;
+            windows.forEach(w => { w.style.zIndex = (++z).toString(); });
+            function bringFront(win){ win.style.zIndex = (++z).toString(); }
+            windows.forEach(win => {
+                const header = win.querySelector('[data-drag-handle]');
+                let sx=0, sy=0, ox=0, oy=0, dragging=false;
+                header.addEventListener('pointerdown', (e)=>{
+                    dragging = true; bringFront(win); header.setPointerCapture(e.pointerId);
+                    const rect = win.getBoundingClientRect(); ox = rect.left; oy = rect.top; sx = e.clientX; sy = e.clientY;
+                });
+                header.addEventListener('pointermove', (e)=>{
+                    if (!dragging || win.classList.contains('maximized')) return;
+                    const nx = ox + (e.clientX - sx); const ny = oy + (e.clientY - sy);
+                    win.style.left = Math.max(8, Math.min(nx, window.innerWidth - win.offsetWidth - 8)) + 'px';
+                    win.style.top = Math.max(52, Math.min(ny, window.innerHeight - win.offsetHeight - 92)) + 'px';
+                });
+                header.addEventListener('pointerup', (e)=>{ dragging = false; header.releasePointerCapture(e.pointerId); });
+
+                // window controls
+                win.querySelector('[data-action="close"]').addEventListener('click', ()=> win.classList.add('hidden'));
+                win.querySelector('[data-action="min"]').addEventListener('click', ()=> win.classList.toggle('hidden'));
+                win.querySelector('[data-action="max"]').addEventListener('click', ()=> {
+                    if (win.classList.contains('maximized')){
+                        win.classList.remove('maximized');
+                        win.style.left = (window.innerWidth/2 - Math.min(win.offsetWidth, 700)/2) + 'px';
+                        win.style.top = '64px';
+                    } else {
+                        win.classList.add('maximized');
+                        win.style.left = '16px';
+                        win.style.top = '56px';
+                    }
+                    bringFront(win);
+                });
+                win.addEventListener('mousedown', ()=> bringFront(win));
+            });
+
+            // Dock logic with magnet hover
+            const dock = document.getElementById('dock');
+            const btns = Array.from(dock.querySelectorAll('.dock-btn'));
+            dock.addEventListener('pointermove', (e)=>{
+                const rect = dock.getBoundingClientRect();
+                const cx = e.clientX - rect.left;
+                btns.forEach((b)=>{
+                    const br = b.getBoundingClientRect();
+                    const bx = (br.left + br.right)/2 - rect.left;
+                    const d = Math.abs(cx - bx);
+                    const scale = Math.max(1, 1.6 - d/120);
+                    b.style.transform = `translateZ(0) scale(${scale.toFixed(2)})`;
+                });
+            });
+            dock.addEventListener('pointerleave', ()=> btns.forEach(b=> b.style.transform = 'scale(1)'));
+            btns.forEach(b => {
+                b.addEventListener('click', ()=>{
+                    const sel = b.getAttribute('data-target');
+                    const win = document.querySelector(sel);
+                    if (!win) return;
+                    win.classList.remove('hidden');
+                    bringFront(win);
+                    b.classList.add('active');
+                    setTimeout(()=> b.classList.remove('active'), 300);
+                });
+            });
+
+            // Terminal typewriter
+            const typed = document.getElementById('terminal-typed');
+            const lines = [
+                'Hi, I\\'m Muhammad Haseeb — Full‑Stack & AWS Cloud Engineer.',
+                'I build reactive, robust apps across web, mobile, and cloud.',
+                'Use the dock to explore windows. Open Projects to dive in.'
+            ];
+            let li = 0, ci = 0;
+            function typeNext(){
+                if (!typed) return;
+                const text = lines[li];
+                typed.innerHTML = text.slice(0, ci) + '<span class="caret"></span>';
+                ci++;
+                if (ci <= text.length){ setTimeout(typeNext, 22); }
+                else { li++; ci = 0; if (li < lines.length) setTimeout(typeNext, 600); }
+            }
+            typeNext();
+
+            // Populate Projects grid from existing data
+            const grid = document.getElementById('projects-grid-desktop');
+            if (grid && typeof projectsData !== 'undefined'){
+                const makeCard = (id, p) => {
+                    const el = document.createElement('button');
+                    el.className = 'project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 text-left';
+                    el.innerHTML = `
+                        <div class="h-36 overflow-hidden"><img src="${p.images[0]}" alt="${p.name}" class="project-card-image" loading="lazy" decoding="async"></div>
+                        <div class="p-4">
+                            <div class="text-lg font-bold mb-1">${p.name}</div>
+                            <div class="text-gray-400 text-sm">${p.status || ''}</div>
+                        </div>`;
+                    el.addEventListener('click', ()=> window.openProjectModal && openProjectModal(id));
+                    return el;
+                };
+                grid.innerHTML = '';
+                Object.entries(projectsData).forEach(([id, p])=> grid.appendChild(makeCard(id, p)));
+            }
+
+            // Trigger skill bars inside Skills window
+            setTimeout(()=>{
+                document.querySelectorAll('#win-skills .skill-progress').forEach((bar, index)=>{
+                    const target = bar.getAttribute('data-width');
+                    setTimeout(()=> bar.style.width = target + '%', index*150);
+                });
+            }, 600);
+        })();
     </script>
 </html>
