@@ -7,6 +7,7 @@
     <meta name="description" content="Muhammad Haseeb – Full Stack Developer and AWS Cloud Engineer. React, React Native, Kotlin, Node.js, Express, PostgreSQL. Portfolio, projects, and contact.">
     <meta name="robots" content="index,follow">
     <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark light">
     <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="icon" href="./images/profileimage.png" sizes="32x32" type="image/png">
@@ -22,6 +23,8 @@
     <meta name="twitter:image" content="./images/profileimage.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" as="script" href="./app.js" crossorigin>
+    <link rel="stylesheet" href="./styles.css">
     <style>
         :root {
             --primary: #00ff9d;
@@ -874,6 +877,156 @@
     </style>
 </head>
 <body class="min-h-screen">
+    <div id="mh-os" class="mh-root" aria-live="polite">
+        <canvas id="mh-bg" class="mh-bg" aria-hidden="true"></canvas>
+        <div class="mh-topbar">
+            <div class="mh-brand">MH • OS</div>
+            <div class="mh-status">
+                <button class="mh-cc-btn" title="Toggle Theme" aria-label="Toggle theme" data-action="toggle-theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <div class="mh-time" data-time></div>
+        </div>
+        <main id="mh-desktop" class="mh-desktop" role="application" aria-label="Desktop">
+            <section class="mh-window mh-elevate" data-app="about" aria-label="About window" aria-hidden="false" style="--x:96px;--y:100px;--w:680px;--h:420px;">
+                <header class="mh-titlebar" data-drag-handle>
+                    <div class="mh-traffic-lights">
+                        <button class="mh-btn close" aria-label="Close" data-close></button>
+                        <button class="mh-btn min" aria-label="Minimize" data-minimize></button>
+                        <button class="mh-btn max" aria-label="Maximize" data-maximize></button>
+                    </div>
+                    <h1 class="mh-title"><i class="fas fa-user-astronaut"></i> About</h1>
+                    <div class="mh-actions"></div>
+                </header>
+                <div class="mh-content">
+                    <div class="mh-about">
+                        <div class="mh-about__hero">
+                            <img src="./images/profileimage.png" alt="Muhammad Haseeb portrait" class="mh-avatar">
+                            <div>
+                                <h2 class="mh-heading-xl">Muhammad Haseeb</h2>
+                                <p class="mh-subtle">Full‑Stack Developer • AWS Cloud Engineer • Android/Kotlin</p>
+                                <div class="mh-tags">
+                                    <span>React</span><span>React Native</span><span>Node</span><span>Express</span><span>PostgreSQL</span><span>AWS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mh-body">Motivated CS graduate crafting performant, delightful software across web and mobile. I blend HCI thinking with pragmatic engineering to ship tools people love.</p>
+                        <div class="mh-grid two">
+                            <div class="mh-card">
+                                <h3 class="mh-heading-s">Education</h3>
+                                <p>BS Computer Science — Sukkur IBA University (2021‑2025)</p>
+                            </div>
+                            <div class="mh-card">
+                                <h3 class="mh-heading-s">Experience</h3>
+                                <p>Networking Intern — SEPCO, Sukkur (Jun‑Jul 2024)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="mh-statusbar">drag me • double‑click title to zoom</footer>
+            </section>
+            <section class="mh-window" data-app="skills" aria-label="Skills window" aria-hidden="true" style="--x:820px;--y:120px;--w:520px;--h:420px;">
+                <header class="mh-titlebar" data-drag-handle>
+                    <div class="mh-traffic-lights">
+                        <button class="mh-btn close" aria-label="Close" data-close></button>
+                        <button class="mh-btn min" aria-label="Minimize" data-minimize></button>
+                        <button class="mh-btn max" aria-label="Maximize" data-maximize></button>
+                    </div>
+                    <h1 class="mh-title"><i class="fas fa-code"></i> Skills</h1>
+                    <div class="mh-actions"></div>
+                </header>
+                <div class="mh-content mh-scroll">
+                    <div class="mh-skillgrid">
+                        <div class="mh-skill"><div class="mh-meter" style="--val:90"></div><span>Frontend</span></div>
+                        <div class="mh-skill"><div class="mh-meter" style="--val:85"></div><span>Backend</span></div>
+                        <div class="mh-skill"><div class="mh-meter" style="--val:70"></div><span>UI/UX</span></div>
+                        <div class="mh-skill"><div class="mh-meter" style="--val:85"></div><span>Cloud/DevOps</span></div>
+                        <div class="mh-skill"><div class="mh-meter" style="--val:75"></div><span>Android/Kotlin</span></div>
+                        <div class="mh-skill"><div class="mh-meter" style="--val:95"></div><span>Problem Solving</span></div>
+                    </div>
+                </div>
+                <footer class="mh-statusbar">conic gradients • accessible labels</footer>
+            </section>
+            <section class="mh-window" data-app="projects" aria-label="Projects window" aria-hidden="true" style="--x:180px;--y:560px;--w:960px;--h:460px;">
+                <header class="mh-titlebar" data-drag-handle>
+                    <div class="mh-traffic-lights">
+                        <button class="mh-btn close" aria-label="Close" data-close></button>
+                        <button class="mh-btn min" aria-label="Minimize" data-minimize></button>
+                        <button class="mh-btn max" aria-label="Maximize" data-maximize></button>
+                    </div>
+                    <h1 class="mh-title"><i class="fas fa-folder-tree"></i> Projects</h1>
+                    <div class="mh-actions"></div>
+                </header>
+                <div class="mh-content mh-scroll">
+                    <div id="projects-grid" class="mh-grid three" aria-live="polite"></div>
+                </div>
+                <footer class="mh-statusbar">click a card to preview • enter to open</footer>
+            </section>
+            <section class="mh-window" data-app="terminal" aria-label="Terminal window" aria-hidden="true" style="--x:760px;--y:560px;--w:540px;--h:360px;">
+                <header class="mh-titlebar" data-drag-handle>
+                    <div class="mh-traffic-lights">
+                        <button class="mh-btn close" aria-label="Close" data-close></button>
+                        <button class="mh-btn min" aria-label="Minimize" data-minimize></button>
+                        <button class="mh-btn max" aria-label="Maximize" data-maximize></button>
+                    </div>
+                    <h1 class="mh-title"><i class="fas fa-terminal"></i> Terminal</h1>
+                    <div class="mh-actions"></div>
+                </header>
+                <div class="mh-content mh-terminal" role="log" aria-live="polite">
+                    <div class="mh-line">$ whoami</div>
+                    <div class="mh-line">> muhammad_haseeb@portfolio</div>
+                    <div class="mh-line">$ echo "Crafting immersive, production‑grade experiences."</div>
+                </div>
+                <footer class="mh-statusbar">type: help • press H in focus</footer>
+            </section>
+            <section class="mh-window" data-app="contact" aria-label="Contact window" aria-hidden="true" style="--x:1180px;--y:240px;--w:460px;--h:520px;">
+                <header class="mh-titlebar" data-drag-handle>
+                    <div class="mh-traffic-lights">
+                        <button class="mh-btn close" aria-label="Close" data-close></button>
+                        <button class="mh-btn min" aria-label="Minimize" data-minimize></button>
+                        <button class="mh-btn max" aria-label="Maximize" data-maximize></button>
+                    </div>
+                    <h1 class="mh-title"><i class="fas fa-paper-plane"></i> Contact</h1>
+                    <div class="mh-actions"></div>
+                </header>
+                <div class="mh-content mh-scroll">
+                    <form action="https://formspree.io/f/xkgzqgoq" method="POST" class="mh-form">
+                        <label>Name<input name="name" required></label>
+                        <label>Email<input name="email" type="email" required></label>
+                        <label>Subject<input name="subject" required></label>
+                        <label>Message<textarea name="message" rows="4" required></textarea></label>
+                        <button class="mh-cta" type="submit"><i class="fas fa-paper-plane"></i> Send</button>
+                    </form>
+                    <div class="mh-links">
+                        <a href="mailto:muhammadhaseeb0070@gmail.com" class="mh-link"><i class="fas fa-envelope"></i> Email</a>
+                        <a href="tel:+923133478691" class="mh-link"><i class="fas fa-phone"></i> +92 313 3478691</a>
+                        <a href="https://github.com/MuhammadHaseeb0070" target="_blank" class="mh-link"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://www.linkedin.com/in/muhammad-haseeb-b4544a257/" target="_blank" class="mh-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    </div>
+                </div>
+                <footer class="mh-statusbar">Formspree • secure external links</footer>
+            </section>
+        </main>
+        <nav class="mh-dock" aria-label="Dock">
+            <button class="mh-dock__item" data-open="about" aria-label="Open About"><i class="fas fa-user-astronaut"></i></button>
+            <button class="mh-dock__item" data-open="skills" aria-label="Open Skills"><i class="fas fa-code"></i></button>
+            <button class="mh-dock__item" data-open="projects" aria-label="Open Projects"><i class="fas fa-folder-tree"></i></button>
+            <button class="mh-dock__item" data-open="terminal" aria-label="Open Terminal"><i class="fas fa-terminal"></i></button>
+            <button class="mh-dock__item" data-open="contact" aria-label="Open Contact"><i class="fas fa-paper-plane"></i></button>
+        </nav>
+        <div id="mh-boot" class="mh-boot" role="alert" aria-live="assertive">
+            <div class="mh-boot__logo">MH</div>
+            <div class="mh-boot__text">booting creative OS…</div>
+        </div>
+        <div id="mh-viewer" class="mh-viewer" aria-hidden="true">
+            <div class="mh-viewer__content" role="dialog" aria-modal="true" aria-label="Image viewer">
+                <img id="mh-viewer-img" alt="Project preview">
+                <button class="mh-viewer__close" aria-label="Close viewer" data-viewer-close><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+    </div>
+    <script src="./app.js" defer></script>
     <a href="#home" class="skip-link">Skip to content</a>
     <!-- Navigation -->
     <nav class="fixed w-full bg-black bg-opacity-80 backdrop-blur-sm z-50 py-4 px-6 shadow-lg" role="navigation" aria-label="Primary">
