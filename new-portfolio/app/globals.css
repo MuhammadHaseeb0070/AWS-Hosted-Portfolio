@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 13%;
+        --background-light: 0 0% 19%;
+        --foreground: 0 0% 87%;
+
+        --primary: 140 100% 47%;
+        --primary-foreground: 0 0% 13%;
+        --secondary: 193 100% 47%;
+        --secondary-foreground: 0 0% 13%;
+        --muted: 0 0% 14.9%;
+        --muted-foreground: 0 0% 71%;
+        --border: 0 0% 24%;
+    }
+}
+
+@layer base {
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: hsl(0 0% 13%);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: hsl(0 0% 14.9%);
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: hsl(140 100% 47%);
+    }
+
+    * {
+        border-color: hsl(0 0% 24%);
+    }
+    
+    body {
+        background-color: hsl(0 0% 13%);
+        color: hsl(0 0% 87%);
+        font-family: var(--font-roboto-flex), sans-serif;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+@layer components {
+    .grid {
+        gap: 25px;
+    }
+
+    .pb-section {
+        padding-bottom: 5rem;
+    }
+
+    @media (min-width: 768px) {
+        .pb-section {
+            padding-bottom: 120px;
+        }
+    }
+
+    .markdown-text ul {
+        padding-left: 1.25rem;
+        margin-top: 0.5rem;
+        list-style-type: disc;
+    }
+}
