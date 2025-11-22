@@ -1,56 +1,20 @@
-# Muhammad Haseeb – Portfolio
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-A fast, accessible, single-page portfolio showcasing projects and skills. Built with Tailwind via CDN and vanilla JavaScript. Optimized with lazy-loaded images, ARIA improvements, SEO meta tags, and smooth interactions.
+# Run and deploy your AI Studio app
 
-## Features
-- Modern dark UI with gradient accents
-- Subtle scroll animations and staggered reveals
-- Project modal with gallery, fullscreen zoom, and keyboard support
-- Mobile menu with animated hamburger and focus trapping
-- Active navigation highlighting on scroll
-- Back-to-top button and smooth in-page navigation
-- SEO and social (Open Graph/Twitter) meta tags
-- Lazy-loaded images and preconnects for better performance
+This contains everything you need to run your app locally.
 
-## Project Structure
-```
-/images            # Project and profile images
-index.html         # Single-page app (HTML, CSS-in-head, and JS)
-README.md          # This file
-```
+View your app in AI Studio: https://ai.studio/apps/drive/1wvrjlEYoTOlSUklCKBs_Qp64jK2tJyJN
 
-## Local Development
-You can open `index.html` directly in a browser. For a more accurate experience (mimics production and avoids CORS quirks), use a local server:
+## Run Locally
 
-```bash
-# Python 3
-python3 -m http.server 5500
-# or Node (http-server)
-npx http-server -p 5500 --silent
-```
+**Prerequisites:**  Node.js
 
-Then visit `http://localhost:5500` and open `index.html`.
 
-## Deployment
-This site is static and can be hosted anywhere: S3 + CloudFront, GitHub Pages, Netlify, Vercel, etc.
-
-- S3/CloudFront: Upload all files to your S3 bucket, set `index.html` as the root document, and configure CloudFront with caching and gzip/brotli.
-- GitHub Pages: Serve from the repository root; ensure the `images` directory is included.
-
-## Customization
-- Update profile data and titles in the hero section.
-- Edit project metadata in the `projectsData` object inside `index.html`.
-- Replace images in `/images` with your own assets (keep filenames or update paths accordingly).
-
-## Accessibility & Keyboard Support
-- Skip link provided to jump to content.
-- Mobile menu and project modal use ARIA attributes and focus trapping.
-- Modal supports Escape to close, Enter/Space to toggle zoom.
-
-## Contact
-- Email: muhammadhaseeb0070@gmail.com
-- LinkedIn: https://www.linkedin.com/in/muhammad-haseeb-b4544a257/
-- GitHub: https://github.com/MuhammadHaseeb0070
-
----
-Deployed on AWS using a CI/CD pipeline. Contributions and suggestions are welcome.
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

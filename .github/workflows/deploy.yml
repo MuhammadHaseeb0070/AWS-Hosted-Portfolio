@@ -3,7 +3,7 @@ name: Deploy Portfolio to S3
 on:
   push:
     branches:
-      - main  # Only runs when you push to main
+      - main
 
 jobs:
   deploy:
@@ -13,6 +13,17 @@ jobs:
     - name: Checkout Repo
       uses: actions/checkout@v3
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build React App
+      run: npm run build
+
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -20,9 +31,10 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: Sync files to S3
+    # IMPORTANT: Sync only the 'dist' folder to the S3 bucket
+    - name: Sync Build to S3
       run: |
-        aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }} --delete
+        aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }} --delete
 
     - name: Invalidate CloudFront cache
       run: |
