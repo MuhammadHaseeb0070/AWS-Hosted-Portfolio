@@ -83,7 +83,7 @@ const Hero: React.FC = () => {
               {/* Image Container */}
               <div className="absolute inset-8 rounded-full bg-surface border border-border overflow-hidden shadow-2xl flex items-center justify-center group">
                 <img 
-                  src="./components/images/profileimage.png" 
+                  src="./images/profileimage.png" 
                   alt="Muhammad Haseeb" 
                   className="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-transform duration-700"
                   onError={(e) => {
