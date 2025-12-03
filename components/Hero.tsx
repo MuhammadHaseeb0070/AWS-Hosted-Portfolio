@@ -51,35 +51,28 @@ const Hero: React.FC = () => {
             </p>
 
            <div className="reveal-on-scroll flex flex-wrap gap-4">
-  <a 
-    href="#projects" 
-    onClick={(e) => handleScroll(e, '#projects')}
-    className="group relative px-8 py-4 bg-primary text-white font-bold rounded-lg overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:-translate-y-1"
-  >
-    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-    <span className="relative flex items-center">
-      View Creations
-      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-    </span>
-  </a>
-  
-  <a 
-    href="#contact" 
-    onClick={(e) => handleScroll(e, '#contact')}
-    className="px-8 py-4 bg-surface border border-border text-textDim font-medium rounded-lg hover:bg-border/50 hover:text-text transition-all"
-  >
-    Initiate Handshake
-  </a>
-
-  {/* New Resume Button */}
-  <a 
-    href="/resume.pdf" 
-    download 
-    className="px-8 py-4 bg-primary/10 border border-primary/30 text-primary font-medium rounded-lg hover:bg-primary/20 hover:text-primary transition-all"
-  >
-    Resume
-  </a>
-</div>
+              <a 
+                href="#projects" 
+                onClick={(e) => handleScroll(e, '#projects')}
+                className="group relative px-8 py-4 bg-primary text-white font-bold rounded-lg overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:-translate-y-1"
+              >
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                <span className="relative flex items-center">
+                  View Creations
+                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+                </span>
+              </a>
+              
+              <a 
+                href="#contact" 
+                onClick={(e) => handleScroll(e, '#contact')}
+                className="px-8 py-4 bg-surface border border-border text-textDim font-medium rounded-lg hover:bg-border/50 hover:text-text transition-all"
+              >
+                Initiate Handshake
+              </a>
+          
+            
+          </div>
 
           </div>
 
