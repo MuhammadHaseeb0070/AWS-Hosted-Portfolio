@@ -1,0 +1,146 @@
+1. Homepage
+Purpose: Establish immediate credibility and communicate a clear value proposition.
+
+Hero Section (Top Banner)
+Headline: High-Quality, Compliant Live Transfers & Lead Generation
+
+Subtext: We connect healthcare, insurance, and financial service providers with verified, conversion-ready customers.
+
+CTA Button: Partner With Us → links to Contact page
+
+Quick Highlights (with icons)
+Cost-Effective Solutions
+
+Quality & Conversion Focus
+
+Scalable Operations
+
+Compliance Mindset
+
+Developer Notes:
+
+Clean, professional design (blue/green palette for trust, orange accent for energy).
+
+Fully responsive layout for mobile.
+
+CTA button should remain visible (sticky header or repeated at bottom).
+
+2. Services Page
+Purpose: Showcase breadth and flexibility of offerings.
+
+Broad Categories
+Lead Generation & Live Transfers
+
+Healthcare & Insurance Campaigns
+
+Outbound & Inbound Call Center Solutions
+
+Scalable Partner Network
+
+Subcategories (examples of current verticals)
+Medicare Advantage & Supplement
+
+Continuous Glucose Monitor (CGM)
+
+SelectRx / Pharmacy Campaigns
+
+Final Expense Insurance
+
+Other verticals available upon request — contact us to discuss custom campaigns.
+
+Developer Notes:
+
+Use expandable sections or cards for each category.
+
+Include icons/illustrations for each service.
+
+Keep wording broad but list current verticals as examples.
+
+3. Buyers & Publishers Page
+Purpose: Position the company as a marketplace hub.
+
+For Buyers (Primary Focus)
+Headline: Buy High-Quality Calls That Convert
+
+Subtext: We deliver compliant, conversion-ready live transfers tailored to your campaign needs.
+
+CTA: Request a Quote → form submission
+
+For Publishers (Secondary Focus)
+Headline: Monetize Your Traffic With Us
+
+Subtext: Partner with us to sell calls and maximize your revenue with transparent payouts.
+
+CTA: Become a Publisher → form submission
+
+Developer Notes:
+
+Two-column layout (Buyers left, Publishers right).
+
+Emphasize Buyers section visually (larger, highlighted).
+
+Forms for both CTAs should include: Name, Email, Company, Campaign Type.
+
+4. Why Choose Us
+Purpose: Build trust and credibility.
+
+Cost-effective solutions
+
+Quality-first approach (trained agents, conversion focus)
+
+Scalable operations (own center + partner network)
+
+Compliance mindset (general trust language, no mention of missing certifications)
+
+Developer Notes:
+
+Use icons or infographics.
+
+Place this section either on homepage (scroll-down) or as a dedicated page.
+
+5. About Us
+Purpose: Humanize the brand and establish credibility.
+
+We are a U.S.-registered marketing agency specializing in high-quality live transfers and lead generation. With our own dedicated call center and a growing partner network, we deliver cost-effective, conversion-focused campaigns across healthcare, insurance, and beyond. Our mission is simple: connect you with the right customers, at scale, with trust and quality at the core.
+
+Developer Notes:
+
+Include professional team photo or abstract illustration (not location-specific).
+
+Keep language broad — emphasize U.S. LLC registration and global operations.
+
+6. Contact Page
+Purpose: Simplify lead capture.
+
+Content
+Contact form (Name, Email, Company, Campaign Type, Message).
+
+U.S. phone number + email.
+
+CTA: Let’s Start Your Campaign.
+
+Developer Notes:
+
+Form should send submissions to business email.
+
+Optionally embed Google Maps of U.S. virtual office address.
+
+7. Footer
+Content:
+
+Quick links: Home, Services, Buyers & Publishers, About Us, Contact
+
+Social media icons (LinkedIn, Facebook, etc.)
+
+Disclaimer: We operate under strict compliance standards and quality assurance processes.
+
+🛠️ General Developer Notes
+Maintain a clean, professional, modern design (avoid flashy sales look).
+
+Prioritize Buyers over Publishers in layout emphasis.
+
+Use trust-building visuals (icons, muted colors, professional typography).
+
+Ensure mobile responsiveness and fast load times.
+
+Include SEO basics: meta titles, descriptions, keywords (Medicare leads, live transfers, healthcare campaigns, insurance marketing).
