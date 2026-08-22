@@ -1,20 +1,23 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Muhammad Haseeb — THE PIPELINE
 
-# Run and deploy your AI Studio app
+Integration Engineer portfolio built around a single concept: **the site is an enterprise
+integration pipeline and the visitor is the payload.**
 
-This contains everything you need to run your app locally.
+Flow: `NODE_00 INGEST → NODE_01 TRANSFORM → NODE_02 ROUTE → NODE_03 PROTOCOLS → NODE_04 DELIVER → NODE_05 HANDSHAKE`
 
-View your app in AI Studio: https://ai.studio/apps/drive/1wvrjlEYoTOlSUklCKBs_Qp64jK2tJyJN
+## Stack
 
-## Run Locally
+- Vite + React + TypeScript (no UI framework — hand-written CSS design system)
+- GSAP ScrollTrigger for all scroll choreography (scrubbed spine drawing, pinned horizontal
+  deliver lane, velocity-reactive marquee, count-ups, clip reveals)
+- IBM Plex Mono + Space Grotesk, ink black / warm paper / signal orange `#FF4D00`
 
-**Prerequisites:**  Node.js
+## Commands
 
+```bash
+npm install
+npm run dev      # local dev
+npm run build    # outputs dist/ for S3 + CloudFront sync
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Deployed via GitHub Actions → S3 → CloudFront (`muhammadhaseeb.space`).
